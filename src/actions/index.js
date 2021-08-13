@@ -16,31 +16,40 @@ export const getSmurfs = () =>{
         .catch(err =>{
             dispatch(smurfFail(err));
         })
-
     }
 }
+
+
 export const smurfStart = () =>{
-return({
-    type: SMURF_START,
-})
+    return({
+        type: SMURF_START,
+    })
 }
+
 export const smurfSuccess = (sm) =>{
     return({
         type: SMURF_SUCCESS,
         payload: sm
     })
 }
+
 export const smurfFail = (error) =>{
-    return({type:SMURF_FAIL, payload: error})
+    return({
+        type:SMURF_FAIL, payload: error
+    })
 }
+
 export const addSmurf = (smurf) => {
     return({
         type: SMURF_ADD,
         payload: smurf
     })
 }
+
 export const setError = (error) =>{
-    return({type:ERROR, payload:error})
+    return({
+        type:ERROR,
+        payload:error})
 }
 
 //Task List:

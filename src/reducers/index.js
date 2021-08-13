@@ -1,7 +1,7 @@
 import {SMURF_START,SMURF_SUCCESS,SMURF_FAIL, SMURF_ADD, ERROR} from './../actions'
 
      const initialState = {
-        smurfs: [ {
+        smurfs: [{
             id:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
             name:'Poppa Smurf',
             position:'Village Leader',
@@ -22,31 +22,36 @@ import {SMURF_START,SMURF_SUCCESS,SMURF_FAIL, SMURF_ADD, ERROR} from './../actio
 const reducer = (state = initialState,action)=>{
 
     switch(action.type){
-        case SMURF_START:
-           return{
+           case SMURF_START:
+              return({
                ...state,
-               isLoading: state.isLoading
-           };
+               isLoading: true
+               });
+
            case SMURF_SUCCESS:
-           return({
+              return({
                ...state,
                smurfs: action.payload,
-           })
+               isLoading: false
+              })
+
            case SMURF_FAIL:
-           return({
+              return({
                ...state,
                errorMessage:"Fetch Failed"
-           })
+                })
+
            case SMURF_ADD:
                return ({
                    ...state,
                    smurfs: [...state.smurfs, action.payload]
                })
+
             case ERROR:
-                return {
+                return ({
                     ...state,
                     errorMessage: action.payload
-                }
+                })
     }
         
         

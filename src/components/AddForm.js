@@ -53,6 +53,7 @@ const AddForm = (props) => {
         </form>
     </section>);
 }
+
 const mapStateToProps = state =>{
     return({
         errorMessage: state.errorMessage

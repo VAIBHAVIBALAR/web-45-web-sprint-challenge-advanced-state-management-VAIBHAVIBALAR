@@ -16,16 +16,17 @@ import {connect} from 'react-redux'
         return <h1>Loading...</h1>;
 
     }
-console.log(props.smurfs)
+    
     return(<div className="listContainer">
       {props.smurfs.map(smurf =><Smurf smurf={smurf}/>)}
     </div>);
 }
+
 const mapStateToProps =(state)=>{
-return{
-    smurfs: state.smurfs,
-    isLoading: state.isLoading
-}
+    return{
+      smurfs: state.smurfs,
+      isLoading: state.isLoading
+    }
 }
 
 export default connect(mapStateToProps)(SmurfList);
