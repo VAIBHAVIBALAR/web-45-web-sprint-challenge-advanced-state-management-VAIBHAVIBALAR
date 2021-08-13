@@ -1,8 +1,51 @@
+import {SMURF_START,SMURF_SUCCESS,SMURF_FAIL, SMURF_ADD, ERROR} from './../actions'
+import  smurfs from './../components/Smurf'
 
-export const initialState = {
+     const initialState = {
+        smurfs: [],
+        isLoading: false,
+        errorMessage: ""
+
 }
 
-const reducer = ()=>{
+const reducer = (state = initialState,action)=>{
+
+    switch(action.type){
+        case SMURF_START:
+           return{
+               ...state,
+               isLoading: true
+           };
+           case SMURF_SUCCESS:
+           return({
+               ...state,
+               smurfs: action.payload
+           })
+           case SMURF_FAIL:
+           return({
+               ...state,
+               errorMessage:action.payload
+           })
+           case SMURF_ADD:
+               return{
+                   ...state,
+                   smurfs: {
+                       name: "",
+                       nickname: "",
+                       position: "",
+                       description: "",
+                       id: ""
+               }
+               }
+            case ERROR:
+                return {
+                    ...state,
+                    errorMessage: action.payload
+                }
+    }
+        
+        
+   
 }
 
 //**************DO NOT EDIT ANY CODE BEYOND THIS POINT**************//
