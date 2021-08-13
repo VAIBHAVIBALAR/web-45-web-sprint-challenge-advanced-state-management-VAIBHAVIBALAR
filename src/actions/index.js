@@ -8,14 +8,13 @@ export const ERROR = "ERROR";
 
 export const getSmurfs = () =>{
     return(dispatch)=>{
-       // dispatch(smurfStart());
+       dispatch(smurfStart());
         axios.get('http://localhost:3333/smurfs')
-        .then((data) =>{
-            //console.log(data)
-            dispatch(smurfSuccess(data))
+        .then(res =>{
+            dispatch(smurfSuccess(res.data))
         })
         .catch(err =>{
-            console.log(err)
+            dispatch(smurfFail(err));
         })
 
     }
@@ -25,10 +24,10 @@ return({
     type: SMURF_START,
 })
 }
-export const smurfSuccess = (smurf) =>{
+export const smurfSuccess = (sm) =>{
     return({
         type: SMURF_SUCCESS,
-        payload: smurf
+        payload: sm
     })
 }
 export const smurfFail = (error) =>{

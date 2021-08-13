@@ -14,10 +14,11 @@ import {connect} from 'react-redux'
 
     if (props.isLoading) {
         return <h1>Loading...</h1>;
-    }
 
+    }
+console.log(props.smurfs)
     return(<div className="listContainer">
-        <Smurf smurf={props.smurfs}/>
+      {props.smurfs.map(smurf =><Smurf smurf={smurf}/>)}
     </div>);
 }
 const mapStateToProps =(state)=>{

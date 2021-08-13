@@ -22,7 +22,7 @@ const AddForm = (props) => {
         if (state.name === "" || state.position === "" || state.nickname === "") {
            props.setError("Name, position and nickname fields are required.");
         }
-        props.addSmurf([...state])
+        props.addSmurf({name:state.name, position:state.position, nickname:state.nickname, description:state.description})
     }
 
     const errorMessage = "";
@@ -54,7 +54,6 @@ const AddForm = (props) => {
     </section>);
 }
 const mapStateToProps = state =>{
-    console.log(state)
     return({
         errorMessage: state.errorMessage
     })

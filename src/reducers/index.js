@@ -1,8 +1,19 @@
 import {SMURF_START,SMURF_SUCCESS,SMURF_FAIL, SMURF_ADD, ERROR} from './../actions'
-import  smurfs from './../components/Smurf'
 
      const initialState = {
-        smurfs: [],
+        smurfs: [ {
+            id:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+            name:'Poppa Smurf',
+            position:'Village Leader',
+            nickname: 'Pops',
+            description: 'Papa is the practical village leader and the father figure of 100 or so young Smurfs. He is easily identified by his red Smurf hat, pants, and a shortly-trimmed white beard and moustache.'
+          },
+         { id:"JzdWIiOiIxMjM0NTY3ODkwIiwibmFtZ",
+            name:'Smurfette',
+            position:'Beautician',
+            nickname: 'Smurfette',
+            description: 'Smurfette\'s role in the village is that of any other smurf; chores, and helping out where she can, but for her specifically, she is often seen to be very active in organizing events.'
+         }],
         isLoading: false,
         errorMessage: ""
 
@@ -14,29 +25,23 @@ const reducer = (state = initialState,action)=>{
         case SMURF_START:
            return{
                ...state,
-               isLoading: true
+               isLoading: state.isLoading
            };
            case SMURF_SUCCESS:
            return({
                ...state,
-               smurfs: action.payload
+               smurfs: action.payload,
            })
            case SMURF_FAIL:
            return({
                ...state,
-               errorMessage:action.payload
+               errorMessage:"Fetch Failed"
            })
            case SMURF_ADD:
-               return{
+               return ({
                    ...state,
-                   smurfs: {
-                       name: "",
-                       nickname: "",
-                       position: "",
-                       description: "",
-                       id: ""
-               }
-               }
+                   smurfs: [...state.smurfs, action.payload]
+               })
             case ERROR:
                 return {
                     ...state,
